@@ -1,6 +1,8 @@
 package solution.model;
 
-public class Developer {
+import solution.dao.interfaces.DBObject;
+
+public class Developer implements DBObject{
 
     private Long id;
     private String first_name;
@@ -15,12 +17,26 @@ public class Developer {
         this.last_name = last_name;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String getName() {
+        return getFirst_name() + " " + getLast_name();
+    }
+
+    @Override
+    public void setName(String name) {
+        String[] fullName = name.split(" ");
+        setFirst_name(fullName[0]);
+        setLast_name(fullName[1]);
     }
 
     public String getFirst_name() {

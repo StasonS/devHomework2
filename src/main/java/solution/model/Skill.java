@@ -1,6 +1,8 @@
 package solution.model;
 
-public class Skill {
+import solution.dao.interfaces.DBObject;
+
+public class Skill implements DBObject{
 
     private Long id;
     private String skill_name;
@@ -13,21 +15,33 @@ public class Skill {
         this.skill_name = skill_name;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getSkill_name() {
+    @Override
+    public String getName() {
         return skill_name;
     }
 
-    public void setSkill_name(String skill_name) {
+    @Override
+    public void setName(String name) {
         this.skill_name = skill_name;
     }
+
+//    public String getSkill_name() {
+//        return skill_name;
+//    }
+//
+//    public void setSkill_name(String skill_name) {
+//        this.skill_name = skill_name;
+//    }
 
     public Skill withId(Long id){
         this.setId(id);
@@ -35,7 +49,7 @@ public class Skill {
     }
 
     public Skill withSkillName(String skill_name){
-        this.setSkill_name(skill_name);
+        this.setName(skill_name);
         return this;
     }
 

@@ -1,6 +1,8 @@
 package solution.model;
 
-public class Project {
+import solution.dao.interfaces.DBObject;
+
+public class Project implements DBObject{
 
     private Long id;
     private String project_name;
@@ -21,13 +23,23 @@ public class Project {
         this.id = id;
     }
 
-    public String getProject_name() {
+    @Override
+    public String getName() {
         return project_name;
     }
 
-    public void setProject_name(String project_name) {
+    @Override
+    public void setName(String name) {
         this.project_name = project_name;
     }
+
+//    public String getProject_name() {
+//        return project_name;
+//    }
+//
+//    public void setProject_name(String project_name) {
+//        this.project_name = project_name;
+//    }
 
     public Project withId(Long id){
         this.setId(id);
@@ -35,7 +47,7 @@ public class Project {
     }
 
     public Project withProjectName(String project_name){
-        this.setProject_name(project_name);
+        this.setName(project_name);
         return this;
     }
 
