@@ -1,4 +1,4 @@
-package solution.dao;
+package solution.dao.interfaces;
 
 import solution.dao.interfaces.DBObject;
 
@@ -21,7 +21,7 @@ public interface GenericDAO<T, ID> {
 
     void create(T t) throws SQLException;
 
-    void read(ID id) throws SQLException;
+    T read(ID id) throws SQLException;
 
     void update(ID  id, T t) throws SQLException;
 

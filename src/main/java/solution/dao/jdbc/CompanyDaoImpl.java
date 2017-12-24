@@ -1,6 +1,6 @@
 package solution.dao.jdbc;
 
-import solution.dao.ConnectionUtil;
+import solution.dao.utils.ConnectionUtil;
 import solution.dao.interfaces.CompanyDAO;
 import solution.model.Company;
 
@@ -35,7 +35,7 @@ public class CompanyDaoImpl implements CompanyDAO {
     }
 
     @Override
-    public void read(Long id) throws SQLException {
+    public Company read(Long id) throws SQLException {
 
         String sql = "SELECT * FROM companies WHERE id = " + id;
         Statement statement = null;
@@ -67,7 +67,8 @@ public class CompanyDaoImpl implements CompanyDAO {
             }
         }
 
-        System.out.println(company);
+        return company;
+//        System.out.println(company);
 
     }
 
@@ -81,6 +82,7 @@ public class CompanyDaoImpl implements CompanyDAO {
             preparedStatement = ConnectionUtil.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, company.getName());
             preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,5 +138,9 @@ public class CompanyDaoImpl implements CompanyDAO {
         }
 
         return companies;
+    }
+
+    private void statementExecutor(Company company){
+
     }
 }

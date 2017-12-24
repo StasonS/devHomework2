@@ -1,6 +1,7 @@
 package solution.dao.jdbc;
 
-import solution.dao.ConnectionUtil;
+import solution.dao.utils.ConnectionUtil;
+import solution.dao.utils.StatementUtil;
 import solution.dao.interfaces.CustomerDAO;
 import solution.model.Customer;
 
@@ -34,7 +35,7 @@ public class CustomerDaoImpl implements CustomerDAO {
     }
 
     @Override
-    public void read(Long id) throws SQLException {
+    public Customer read(Long id) throws SQLException {
 
         String sql = "SELECT * FROM customers WHERE id = " + id;
         Statement statement = null;
@@ -66,7 +67,8 @@ public class CustomerDaoImpl implements CustomerDAO {
             }
         }
 
-        System.out.println(customer);
+        return customer;
+//        System.out.println(customer);
 
     }
 
@@ -80,6 +82,7 @@ public class CustomerDaoImpl implements CustomerDAO {
             preparedStatement = ConnectionUtil.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, customer.getName());
             preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,18 +98,7 @@ public class CustomerDaoImpl implements CustomerDAO {
     public void delete(Long id) throws SQLException {
 
         String sql = "DELETE FROM customers WHERE id = " + id;
-        Statement statement = null;
-
-        try {
-            statement = ConnectionUtil.getConnection().createStatement();
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-        }
+        new StatementUtil().executeUpdate(sql);
     }
 
     @Override

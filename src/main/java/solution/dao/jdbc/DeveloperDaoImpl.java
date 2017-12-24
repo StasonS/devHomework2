@@ -1,6 +1,6 @@
 package solution.dao.jdbc;
 
-import solution.dao.ConnectionUtil;
+import solution.dao.utils.ConnectionUtil;
 import solution.dao.interfaces.DeveloperDAO;
 import solution.model.Developer;
 
@@ -27,13 +27,15 @@ public class DeveloperDaoImpl implements DeveloperDAO {
         } catch (Exception e){
             e.printStackTrace();
         } finally {
-            preparedStatement.close();
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
         }
 
     }
 
     @Override
-    public void read(Long id) throws SQLException {
+    public Developer read(Long id) throws SQLException {
 
         String sql = "SELECT * FROM developers WHERE id = " + id;
         Statement statement = ConnectionUtil.getConnection().createStatement();
@@ -51,7 +53,8 @@ public class DeveloperDaoImpl implements DeveloperDAO {
                     .withLastName(lastName);
         }
 
-        System.out.println(developer);
+        return developer;
+//        System.out.println(developer);
     }
 
     @Override

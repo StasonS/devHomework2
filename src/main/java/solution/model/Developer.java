@@ -36,7 +36,11 @@ public class Developer implements DBObject{
     public void setName(String name) {
         String[] fullName = name.split(" ");
         setFirst_name(fullName[0]);
-        setLast_name(fullName[1]);
+        try {
+            setLast_name(fullName[1]);
+        } catch (Exception e){
+            setLast_name("no last name");
+        }
     }
 
     public String getFirst_name() {

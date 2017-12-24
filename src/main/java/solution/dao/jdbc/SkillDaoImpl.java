@@ -1,6 +1,7 @@
 package solution.dao.jdbc;
 
-import solution.dao.ConnectionUtil;
+import solution.dao.utils.ConnectionUtil;
+import solution.dao.utils.StatementUtil;
 import solution.dao.interfaces.SkillDAO;
 import solution.model.Skill;
 
@@ -32,7 +33,7 @@ public class SkillDaoImpl implements SkillDAO {
     }
 
     @Override
-    public void read(Long id) throws SQLException {
+    public Skill read(Long id) throws SQLException {
 
         String sql = "SELECT * FROM skills WHERE id = " + id;
         Statement statement = null;
@@ -48,7 +49,8 @@ public class SkillDaoImpl implements SkillDAO {
                 Long skillId = resultSet.getLong(1);
                 String skill_name = resultSet.getString(2);
 
-                skill = new Skill().withId(skillId)
+                skill = new Skill()
+                        .withId(skillId)
                         .withSkillName(skill_name);
             }
 
@@ -64,7 +66,8 @@ public class SkillDaoImpl implements SkillDAO {
             }
         }
 
-        System.out.println(skill);
+        return skill;
+//        System.out.println(skill);
 
     }
 
@@ -78,6 +81,7 @@ public class SkillDaoImpl implements SkillDAO {
             preparedStatement = ConnectionUtil.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, skill.getName());
             preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,18 +99,7 @@ public class SkillDaoImpl implements SkillDAO {
         String sql = "DELETE FROM skills WHERE id = " + id;
         Statement statement = null;
 
-        try {
-            statement = ConnectionUtil.getConnection().createStatement();
-            statement.executeUpdate(sql);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-        }
-
+        new StatementUtil().executeUpdate(sql);
     }
 
     @Override

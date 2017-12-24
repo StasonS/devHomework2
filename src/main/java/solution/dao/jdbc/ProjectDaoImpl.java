@@ -1,6 +1,6 @@
 package solution.dao.jdbc;
 
-import solution.dao.ConnectionUtil;
+import solution.dao.utils.ConnectionUtil;
 import solution.dao.interfaces.ProjectDAO;
 import solution.model.Project;
 
@@ -34,7 +34,7 @@ public class ProjectDaoImpl implements ProjectDAO {
     }
 
     @Override
-    public void read(Long id) throws SQLException {
+    public Project read(Long id) throws SQLException {
 
         String sql = "SELECT * FROM projects WHERE id = " + id;
         Statement statement = null;
@@ -66,7 +66,8 @@ public class ProjectDaoImpl implements ProjectDAO {
             }
         }
 
-        System.out.println(project);
+        return project;
+//        System.out.println(project);
 
     }
 
@@ -80,6 +81,7 @@ public class ProjectDaoImpl implements ProjectDAO {
             preparedStatement = ConnectionUtil.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, project.getName());
             preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

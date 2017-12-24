@@ -30,7 +30,7 @@ public class Project implements DBObject{
 
     @Override
     public void setName(String name) {
-        this.project_name = project_name;
+        this.project_name = name;
     }
 
 //    public String getProject_name() {

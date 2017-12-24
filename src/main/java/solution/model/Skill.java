@@ -32,14 +32,14 @@ public class Skill implements DBObject{
 
     @Override
     public void setName(String name) {
-        this.skill_name = skill_name;
+        this.skill_name = name;
     }
 
 //    public String getSkill_name() {
 //        return skill_name;
 //    }
-//
-//    public void setSkill_name(String skill_name) {
+
+//    private void setSkill_name(String skill_name) {
 //        this.skill_name = skill_name;
 //    }
 

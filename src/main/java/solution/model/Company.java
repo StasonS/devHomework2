@@ -32,7 +32,7 @@ public class Company implements DBObject{
 
     @Override
     public void setName(String name) {
-        this.company_name = company_name;
+        this.company_name = name;
     }
 
 //    public String getCompany_name() {

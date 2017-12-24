@@ -32,7 +32,7 @@ public class Customer implements DBObject{
 
     @Override
     public void setName(String name) {
-        this.customer_name = customer_name;
+        this.customer_name = name;
     }
 
 //    public String getCustomer_name() {
