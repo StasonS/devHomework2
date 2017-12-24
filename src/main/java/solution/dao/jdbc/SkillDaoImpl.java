@@ -67,8 +67,6 @@ public class SkillDaoImpl implements SkillDAO {
         }
 
         return skill;
-//        System.out.println(skill);
-
     }
 
     @Override

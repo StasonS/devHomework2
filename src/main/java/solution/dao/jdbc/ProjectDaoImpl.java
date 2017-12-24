@@ -67,8 +67,6 @@ public class ProjectDaoImpl implements ProjectDAO {
         }
 
         return project;
-//        System.out.println(project);
-
     }
 
     @Override

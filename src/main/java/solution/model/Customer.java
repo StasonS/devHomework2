@@ -35,14 +35,6 @@ public class Customer implements DBObject{
         this.customer_name = name;
     }
 
-//    public String getCustomer_name() {
-//        return customer_name;
-//    }
-//
-//    public void setCustomer_name(String customer_name) {
-//        this.customer_name = customer_name;
-//    }
-
     public Customer withId(Long id){
         this.setId(id);
         return this;

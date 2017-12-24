@@ -1,7 +1,5 @@
 package solution.dao.utils;
 
-import solution.dao.utils.ConnectionUtil;
-
 import java.sql.SQLException;
 import java.sql.Statement;
 

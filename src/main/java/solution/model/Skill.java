@@ -35,14 +35,6 @@ public class Skill implements DBObject{
         this.skill_name = name;
     }
 
-//    public String getSkill_name() {
-//        return skill_name;
-//    }
-
-//    private void setSkill_name(String skill_name) {
-//        this.skill_name = skill_name;
-//    }
-
     public Skill withId(Long id){
         this.setId(id);
         return this;

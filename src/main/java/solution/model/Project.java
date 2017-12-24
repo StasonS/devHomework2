@@ -33,14 +33,6 @@ public class Project implements DBObject{
         this.project_name = name;
     }
 
-//    public String getProject_name() {
-//        return project_name;
-//    }
-//
-//    public void setProject_name(String project_name) {
-//        this.project_name = project_name;
-//    }
-
     public Project withId(Long id){
         this.setId(id);
         return this;
